@@ -180,7 +180,7 @@ resource "null_resource" "configure-cat-app" {
     }
   }
 
-  tags {
+  tags = {
     Department = "devops"
   }
 }
