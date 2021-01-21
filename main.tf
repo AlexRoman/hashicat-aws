@@ -125,6 +125,8 @@ resource "aws_instance" "hashicat" {
 
   tags = {
     Name = "${var.prefix}-hashicat-instance"
+    Department = "devops"
+    Billable = "true"
   }
 }
 
@@ -178,10 +180,6 @@ resource "null_resource" "configure-cat-app" {
       private_key = tls_private_key.hashicat.private_key_pem
       host        = aws_eip.hashicat.public_ip
     }
-  }
-
-  tags = {
-    Department = "devops"
   }
 }
 
