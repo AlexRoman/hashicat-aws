@@ -1,0 +1,117 @@
+    1  terraform version
+    2  ls
+    3  terraform init
+    4  ls /root/.terraform.d/credentials.tfrc.json 
+    5  cat /root/.terraform.d/credentials.tfrc.json 
+    6  terraform init
+    7  clear
+    8  terraform apply
+    9  echo $AWS_ACCESS_KEY_ID
+   10  echo $AWS_SECRET_ACCESS_KEY
+   11  terraform version
+   12  cat variables.tf 
+   13  ls
+   14  cat terraform.tfvars 
+   15  terraform init
+   16  terraform plan
+   17  terraform apply
+   18  git remote remove origin
+   19  git remote add origin https://github.com/AlexRoman/hashicat-aws
+   20  git pull
+   21  git branch --set-upstream-to=origin/master master
+   22  ls -a
+   23  git push -u origin master
+   24  git config --global user.email "alex.roman@gmail.com"
+   25  git config --global user.name "Alex Roman"
+   26  git status
+   27  git diff
+   28  git add .
+   29  git status
+   30  git diff --cached
+   31  git commit -a -m "add remote backend"
+   32  git push
+   33  ls -a ~/.ssh
+   34  cat ~/.ssh/id_rsa.pub 
+   35  ssh-keygen -t ecdsa
+   36  ssh-add -l
+   37  ssh-add ~/.ssh/id_ecdsa
+   38  cat ~/.ssh/id_ecdsa.pub 
+   39  vim .git/config 
+   40  git push -u origin
+   41  cat .git/config
+   42  git branch 
+   43  git checkout -b text_change
+   44  git diff
+   45  git commit -a -m "Changed default text"
+   46  git push -u origin text_change
+   47  git pull
+   48  git diff
+   49  git commit -a -m "Add department tag"
+   50  git push
+   51  git reset --soft HEAD~
+   52  git diff
+   53  git diff --cached
+   54  git checkout master
+   55  git pull
+   56  git commit -a -m "Add department tag"
+   57  git push
+   58  git diff
+   59  git commit -a -m "oopsie"
+   60  git push
+   61  git status
+   62  git diff
+   63  git commit -a -m "add tags in correct place"
+   64  git push
+   65  git status
+   66  git diff
+   67  git add .
+   68  git diff --cached
+   69  git commit -a
+   70  git status
+   71  git commit -a -m "Add s3 bucket module"
+   72  git push
+   73  git status
+   74  git diff
+   75  git commit -a -m "fixed it?"
+   76  git push
+   77  export TOKEN=$(grep token /root/.terraform.d/credentials.tfrc.json | cut -d '"' -f4)
+   78  echo $TOKEN
+   79  export ORG="enzuzo-training"
+   80  curl -s --header "Authorization: Bearer $TOKEN" --header "Content-Type: application/vnd.api+json"   https://app.terraform.io/api/v2/organizations/$ORG/workspaces/hashicat-aws | jq -r .data.id
+   81  curl -s --header "Authorization: Bearer $TOKEN" --header "Content-Type: application/vnd.api+json"   https://app.terraform.io/api/v2/organizations/
+   82  curl -s --header "Authorization: Bearer $TOKEN" --header "Content-Type: application/vnd.api+json"   https://app.terraform.io/api/v2/organizations/$ORG/workspaces/hashicat-aws | jq -r .data.id
+   83  curl -s --header "Authorization: Bearer $TOKEN" --header "Content-Type: application/vnd.api+json"   https://app.terraform.io/api/v2/organizations/$ORG/workspaces/hashicat-aws | jq 
+   84  curl -s --header "Authorization: Bearer $TOKEN" --header "Content-Type: application/vnd.api+json"   https://app.terraform.io/api/v2/organizations/$ORG/workspaces/hashicat-aws/configuration-versions | jq 
+   85  curl -s --header "Authorization: Bearer $TOKEN" --header "Content-Type: application/vnd.api+json"   https://app.terraform.io/api/v2/organizations/$ORG/workspaces/hashicat-aws | jq -r .data.id
+   86  curl -s --header "Authorization: Bearer $TOKEN" --header "Content-Type: application/vnd.api+json"   https://app.terraform.io/api/v2/workspaces/ws-E3JsJ8vEazGbAKba/configuration-versions | jq 
+   87  cat - >> create-configuration-version.json
+   88  cat create-configuration-version.json 
+   89  curl --header "Authorization: Bearer $TOKEN" --header "Content-Type: application/vnd.api+json" --request POST --data @create-configuration-version.json https://app.terraform.io/v2/workspaces/ws-E3JsJ8vEazGbAKba/configuration-versions | jq
+   90  curl --header "Authorization: Bearer $TOKEN" --header "Content-Type: application/vnd.api+json" --request POST --data @create-configuration-version.json https://app.terraform.io/api/v2/workspaces/ws-E3JsJ8vEazGbAKba/configuration-versions | jq
+   91  ls
+   92  mv create-configuration-version.json ..
+   93  ls
+   94  tar -czvf content-$(date +%s).tar.gz -C . .
+   95  ls
+   96  curl --header "Content-Type: application/octet-stream" --request PUT --data-binary @content-1611265167.tar.gz https://archivist.terraform.io/v1/object/dmF1bHQ6djE6bUtQeEpuMGluNHFieFhPZFlsaEtodzNOc3o1NXQ4Q0RSbTJPc0J2RHhTRTEzZTVGUC9TdHdHOGc0Vmxjc3MyLzAxekZSN2JYc1dmWm1pN244SjkwWkZPN3NNMWJYUVFWaXJBbkdCNmlYbkxIMFNQdy9SSkVNdjRrUnBLd2tBL2lkRjdLVTEraC9WY1dPdXVielhSN2FPMGM2NGd3bFo5d21QZkpnNXJqNHlIRVJrNVFzSkJCYk56MmltTTI0NXVTeHJaZXhQL1dlbEJYbHZvZ2kxa3pleHRreHh0bEtVOXpTRldidWthNGFxNnErK04yaHN1VldSTmVnSm9QbFdzaVo0MGhXdDJLZEltRzRuWThwc2FmRkoxSERVejVNd0U9
+   97  ls
+   98  rm content-1611265167.tar.gz 
+   99  cd ..
+  100  ls
+  101  tar -czvf content-$(date +%s).tar.gz -C . .
+  102  ls
+  103  curl --header "Authorization: Bearer $TOKEN" --header "Content-Type: application/vnd.api+json" --request POST --data @create-configuration-version.json https://app.terraform.io/api/v2/workspaces/ws-E3JsJ8vEazGbAKba/configuration-versions | jq
+  104  curl --header "Content-Type: application/octet-stream" --request PUT --data-binary @content-1611265332.tar.gz https://archivist.terraform.io/v1/object/dmF1bHQ6djE6RktEV1dBRndZOXBFdUJZNWkvcDlHdGJTSHh4dEtwb3lTZlhvZ2xRaUlaajUwbEhiQXA2ajZ1c2t6NGpIOFhlS3AwblBkazBxMUpXRlRzcDViaHU2MVEvbkt5Y2xGWExIalJQSElZaWhzM3FUblVSN2VzS0Y4dnFDeVJvWE9ORTFIKzAvRjlza083WXd6cmtaUDh6V0d1RkI5Y053MlU2SGs5WW9KWFZ1RWhpZi9zVTZtZE9qdVZBQmlOVjJDQlNCZ2dteDA3eVpmQkRKVzlLMUV1V2dCTWtzYVlCcXB4OG1HY0Y5VWxIbFM1MGYweGl0eHhNZGhTWElPaXh2MEMzQUxhOGhsU2p0QzhsdElXd3ZORm1qeWZOL3NFaDRoK3c9
+  105  curl --header "Authorization: Bearer $TOKEN" --header "Content-Type: application/vnd.api+json" --request POST --data 
+  106  curl --header "Authorization: Bearer $TOKEN" --header "Content-Type: application/vnd.api+json" --request POST --data @json/var-placeholder.json https://app.terraform.io/api/v2/vars
+  107  curl --header "Authorization: Bearer $TOKEN" --header "Content-Type: application/vnd.api+json" --request POST --data @json/var-height.json https://app.terraform.io/api/v2/vars | jq
+  108  curl --header "Authorization: Bearer $TOKEN" --header "Content-Type: application/vnd.api+json" --request POST --data @json/var-width.json https://app.terraform.io/api/v2/vars | jq
+  109  curl --header "Authorization: Bearer $TOKEN" --header "Content-Type: application/vnd.api+json" --request POST --data @create-configuration-version.json https://app.terraform.io/api/v2/workspaces/ws-E3JsJ8vEazGbAKba/configuration-versions | jq
+  110  curl --header "Content-Type: application/octet-stream" --request PUT --data-binary @content-1611265332.tar.gz https://archivist.terraform.io/v1/object/dmF1bHQ6djE6NlpaSXplZm5WbDhZaTVDZTlISmZzaFE4aHdkb3JnaGtQc1o2MHBiMXB5bTFwN2kwVTZlemU5WEZrdUZRUVJqRU5sanJtREx0VXR5Vk1vTk5CdVF1a0RUa0tFNjhoRkJ3ZkFmZm5DOGRRNVFqaGJNR0doTzk2SCthK1VNMU9temJEZUZhaVgyelRNZnpBcmw0YVZUNy82V0NoRGxnVkdZVEV1MWlHdHA5Ykhib2xBRGRmTzREM2J5UEFDZ3RCMG1veFlYd08zak9heWN3RGFGdkxuV3V5TjQySGxvMjVnTlNkVWNqa2V2TzdScndGY1NiS3QyWjRaOWdyUy9RSDhkQXI2a1p5S0s1SEdMNjZxeU5hNkZMNjg1SkFSdm5xUDg9
+  111  git status
+  112  rm content-1611265332.tar.gz 
+  113  history
+  114  ls
+  115  git status
+  116  git add .
+  117  history >> shell_history.txt
