@@ -179,6 +179,10 @@ resource "null_resource" "configure-cat-app" {
       host        = aws_eip.hashicat.public_ip
     }
   }
+
+  tags {
+    Department = "devops"
+  }
 }
 
 resource "tls_private_key" "hashicat" {
